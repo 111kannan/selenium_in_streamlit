@@ -36,6 +36,6 @@ except TimeoutException:
     driver.quit()
 
 time.sleep(10)
-elements = driver.find_elements_by_xpath(XPATH)
+elements = driver.find_elements(By.XPATH,XPATH)
 st.write([el.text for el in elements])
 driver.quit()
