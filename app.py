@@ -11,7 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
 URL = "https://www.google.com/search?q=google+silks+saree&oq=google+silks+saree&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQABgNGIAEMgoIAhAAGA8YFhgeMgwIAxAAGAgYDRgPGB4yDQgEEAAYhgMYgAQYigUyDQgFEAAYhgMYgAQYigUyCggGEAAYgAQYogQyCggHEAAYgAQYogQyCggIEAAYogQYiQUyCggJEAAYgAQYogTSAQgzOTc2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
-XPATH = "//*[@id="rso"]/div[3]/div/div/div[1]/div/div/span/a/h3"
+XPATH = '//*[@id="rso"]/div[3]/div/div/div[1]/div/div/span/a/h3'
 TIMEOUT = 20
 
 st.title("Test Selenium")
