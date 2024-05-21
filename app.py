@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
-URL = "https://www.unibet.fr/sport/football/europa-league/europa-league-matchs"
-XPATH = "//*[@class='ui-mainview-block eventpath-wrapper']"
+URL = "https://www.google.com/search?q=google+silks+saree&oq=google+silks+saree&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQABgNGIAEMgoIAhAAGA8YFhgeMgwIAxAAGAgYDRgPGB4yDQgEEAAYhgMYgAQYigUyDQgFEAAYhgMYgAQYigUyCggGEAAYgAQYogQyCggHEAAYgAQYogQyCggIEAAYogQYiQUyCggJEAAYgAQYogTSAQgzOTc2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
+XPATH = "//*[@id="rso"]/div[3]/div/div/div[1]/div/div/span/a/h3"
 TIMEOUT = 20
 
 st.title("Test Selenium")
