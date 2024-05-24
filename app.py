@@ -4,6 +4,8 @@ from urllib.parse import unquote
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 
 regex_pattern_email = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
 fb_pattern = r'(facebook\.com|fb\.com)'
@@ -109,9 +111,16 @@ def main():
     )
 
     if st.button('Extract Data'):
-        options = Options()
-        options.headless = True
-        driver = webdriver.Firefox(options=options)
+        # options = Options()
+        # options.headless = True
+        # driver = webdriver.Firefox(options=options)
+        firefoxOptions = Options()
+        firefoxOptions.add_argument("--headless")
+        service = Service(GeckoDriverManager().install())
+        driver = webdriver.Firefox(
+            options=firefoxOptions,
+            service=service,
+        )
         driver.get(site)
         data = extraction(driver)
         st.write(data)
