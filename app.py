@@ -4,11 +4,10 @@ import time
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 
 URL = "https://www.google.com/search?q=google+silks+saree&oq=google+silks+saree&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQABgNGIAEMgoIAhAAGA8YFhgeMgwIAxAAGAgYDRgPGB4yDQgEEAAYhgMYgAQYigUyDQgFEAAYhgMYgAQYigUyCggGEAAYgAQYogQyCggHEAAYgAQYogQyCggIEAAYogQYiQUyCggJEAAYgAQYogTSAQgzOTc2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8"
 XPATH = '//*[@id="rso"]/div[3]/div/div/div[1]/div/div/span/a/h3'
@@ -17,11 +16,11 @@ TIMEOUT = 20
 st.title("Test Selenium")
 st.markdown("You should see some random Football match text below in about 21 seconds")
 
-firefoxOptions = Options()
-firefoxOptions.add_argument("--headless")
-service = Service(GeckoDriverManager().install())
-driver = webdriver.Firefox(
-    options=firefoxOptions,
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(
+    options=chrome_options,
     service=service,
 )
 driver.get(URL)
