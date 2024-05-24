@@ -111,7 +111,7 @@ def main():
     if st.button('Extract Data'):
         options = Options()
         options.headless = True
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Firefox(options=options)
         driver.get(site)
         data = extraction(driver)
         st.write(data)
