@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.common.keys import Keys
+import time
 
 regex_pattern_email = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
 fb_pattern = r'(facebook\.com|fb\.com)'
@@ -16,6 +18,14 @@ pinterst_pattern = r"pinterest\.com|pin\.it"
 contact_number_pattern = r"(\+91)?\-?\d{2}\-[\d ]+|\b\d{3}[-.]?\d{3}[-.]?\d{4}\b|[ \d+]{8,16}"
 contact_number_pattern1 = r"tel:([\+\d ]+)"
 contact_number_pattern2 = r"\/\/wa.me\/(\d+)"
+
+firefoxOptions = Options()
+firefoxOptions.add_argument("--headless")
+service = Service(GeckoDriverManager().install())
+driver = webdriver.Firefox(
+    options=firefoxOptions,
+    service=service,
+)
 
 def strip_set(inp_set):
     return {st.strip() for st in inp_set}
@@ -100,28 +110,26 @@ def main():
     st.title("Web Data Extractor")
 
     # Add a selectbox to the sidebar:
-    site = st.selectbox(
-        'Select a website:',
-        ("https://www.sundarisilks.com/",
-         "http://www.kpssilksaree.com/",
-         "https://www.pothys.com/?utm_source=gmb&utm_medium=organic&utm_campaign=sulekhapromanage-pothys",
-         "https://tulsisilks.co.in/",
-         "https://www.palamsilk.com/",
-         "https://rmkv.com/")
-    )
+    # site = st.selectbox(
+    #     'Select a website:',
+    #     ("https://www.sundarisilks.com/",
+    #      "http://www.kpssilksaree.com/",
+    #      "https://www.pothys.com/?utm_source=gmb&utm_medium=organic&utm_campaign=sulekhapromanage-pothys",
+    #      "https://tulsisilks.co.in/",
+    #      "https://www.palamsilk.com/",
+    #      "https://rmkv.com/")
+    # )
+    site = st.text_input("Enter the site: ",value = "")
 
     if st.button('Extract Data'):
         # options = Options()
         # options.headless = True
         # driver = webdriver.Firefox(options=options)
-        firefoxOptions = Options()
-        firefoxOptions.add_argument("--headless")
-        service = Service(GeckoDriverManager().install())
-        driver = webdriver.Firefox(
-            options=firefoxOptions,
-            service=service,
-        )
+        
         driver.get(site)
+        time.sleep(2)
+        webdriver.ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+        time.sleep(1)
         data = extraction(driver)
         st.write(data)
         driver.quit()
